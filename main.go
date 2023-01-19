@@ -2,11 +2,10 @@ package main
 
 import (
 	"fmt"
+	"os"
 	"tacklo/routers"
 
 	"tacklo/types"
-
-	// "os"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
@@ -56,6 +55,6 @@ func main() {
 	//Creating Routers
 	routers.CreateRouters(app, rooms)
 
-	app.Listen(":3000")
+	app.Listen(":" + os.Getenv("PORT"))
 
 }
