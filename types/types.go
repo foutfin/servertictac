@@ -53,7 +53,6 @@ func (r *Room) Run() {
 			} else if code == 2 { // Game Start
 				var oscore int8
 				for id, p := range r.Players {
-					fmt.Println(id, p)
 					if id == 1 {
 						oscore = r.Players[2].Score
 					} else {
@@ -86,7 +85,6 @@ func (r *Room) Run() {
 						if p.Chance == true {
 							p.Score += 1
 						}
-						fmt.Println("game end ", p)
 						msg := map[string]interface{}{
 							"mes":     "gmend",
 							"you":     p.Score,
@@ -121,11 +119,9 @@ func (r *Room) Run() {
 }
 
 func (player *Player) Writer() {
-	// fmt.Println("Player Writer Fired")
 	for {
 		select {
 		case msg := <-player.Send:
-			// fmt.Println(msg)
 			player.Conn.WriteJSON(msg)
 		}
 	}
